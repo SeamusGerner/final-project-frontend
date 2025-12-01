@@ -1,6 +1,6 @@
 
 // script.js
-// Revised required-field logic per user request.
+// Full frontend logic with backend integration
 
 const API_BASE_URL = "https://final-project-backend-production-83f0.up.railway.app";
 
@@ -48,9 +48,7 @@ function hasValidPhone(value) {
   return digits.length === 10;
 }
 
-
-
-
+// Main form submission handler
 function handleCrudFormSubmission(formEl) {
   const outputEl = formEl.querySelector('.output');
 
@@ -76,14 +74,10 @@ function handleCrudFormSubmission(formEl) {
     let isRequired = false;
 
     if (isSingleFieldForm) isRequired = true;
-
     if (idName.includes('patientid') || idName.includes('patient_id') || idName === 'patientid') isRequired = true;
-
     if (idName.includes('phone')) isRequired = true;
 
-    if (isRequired && val === '') {
-      errors.push(`${label} is required.`);
-    }
+    if (isRequired && val === '') errors.push(`${label} is required.`);
   });
 
   // TYPE-SPECIFIC VALIDATIONS
@@ -94,15 +88,10 @@ function handleCrudFormSubmission(formEl) {
     const type = (inp.type || '').toLowerCase();
     const keyLabel = inp.name || inp.id || inp.placeholder || 'field';
 
-    if (type === 'email') {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) errors.push(`${keyLabel} must be a valid email address.`);
-    }
+    if (type === 'email' && !isValidEmail(val)) errors.push(`${keyLabel} must be a valid email address.`);
 
     const idName = ((inp.id || '') + ' ' + (inp.name || '')).toLowerCase();
-    if (idName.includes('phone')) {
-      const digits = val.replace(/\D/g, '');
-      if (digits.length !== 10) errors.push(`${keyLabel} must contain exactly 10 digits.`);
-    }
+    if (idName.includes('phone') && !hasValidPhone(val)) errors.push(`${keyLabel} must contain exactly 10 digits.`);
   });
 
   if (errors.length > 0) {
@@ -120,7 +109,7 @@ function handleCrudFormSubmission(formEl) {
     const idName = ((inp.id || '') + ' ' + (inp.name || '')).toLowerCase();
     if (idName.includes('phone')) {
       const digits = String(inp.value || '').replace(/\D/g, '');
-      if (digits.length === 10) inp.value = digits.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      if (digits.length === 10) inp.value = formatPhoneDigits(digits);
     }
   });
 
@@ -131,10 +120,9 @@ function handleCrudFormSubmission(formEl) {
     data[key] = inp.value;
   });
 
-  // Determine endpoint based on form ID
+  // Determine endpoint and HTTP method based on form ID
   let endpoint = '';
   let method = 'POST'; // default
-
   const formId = formEl.id.toLowerCase();
 
   if (formId.includes('doctor-create')) endpoint = '/doctor/create';
@@ -152,7 +140,7 @@ function handleCrudFormSubmission(formEl) {
   else if (formId.includes('kit-create')) endpoint = '/kit/create';
   else if (formId.includes('kit-update')) { endpoint = '/kit/update'; method = 'PUT'; }
   else if (formId.includes('kit-delete')) { endpoint = '/kit/delete'; method = 'DELETE'; }
-  else if (formId.includes('office-read') || formId.includes('office-delete')) endpoint = '/office'; // adjust for read/delete logic
+  else if (formId.includes('office-read') || formId.includes('office-delete')) endpoint = '/office';
   else if (formId.includes('communication-read')) endpoint = '/communication';
   else if (formId.includes('admin-read') || formId.includes('admin-delete')) endpoint = '/admin';
   else if (formId.includes('order-detail-create')) endpoint = '/order-details/create';
@@ -162,6 +150,7 @@ function handleCrudFormSubmission(formEl) {
     return;
   }
 
+  // Make the fetch request
   fetch(`${API_BASE_URL}${endpoint}`, {
     method: method,
     headers: { 'Content-Type': 'application/json' },
@@ -186,8 +175,5 @@ function handleCrudFormSubmission(formEl) {
     }
   });
 }
-
-
-
 
 
