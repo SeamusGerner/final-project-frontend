@@ -30,7 +30,7 @@ req.pipe(fetch(url, {
 });
 
 // Fallback: serve index.html for SPA routing (React, Vue, etc.)
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
 res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
