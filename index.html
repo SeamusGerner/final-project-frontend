@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Project Database</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Final Project Database</h1>
+    <p>Author: Seamus Gerner</p>
+    <p>Description: [desc here]</p>
+  </header>
+
+  <main>
+    <p>Select what field you would like to make changes to:</p>
+
+    <!-- Doctors Section -->
+    <div class="table-section">
+      <h2>Doctors</h2>
+      <button class="crud-btn" data-target="doctor-create">Add New Entry</button>
+      <button class="crud-btn" data-target="doctor-read">View Existing Entry</button>
+      <button class="crud-btn" data-target="doctor-update">Update Existing Entry</button>
+      <button class="crud-btn" data-target="doctor-delete">Delete Entry</button>
+
+      <div id="doctor-create" class="crud-form">
+        <h3>Add Doctor</h3>
+        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="Last Name">
+        <input type="text" placeholder="Specialization">
+        <input type="text" id="phoneDoctorAdd" placeholder="Phone (XXX-XXX-XXXX)">
+        <input type="email" placeholder="Email">
+        <input type="number" placeholder="Office ID">
+        <button>Submit</button>
+      </div>
+
+      <div id="doctor-read" class="crud-form">
+        <h3>View Doctors</h3>
+        <input type="number" placeholder="Doctor ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="doctor-update" class="crud-form">
+        <h3>Update Doctor</h3>
+        <input type="number" placeholder="Doctor ID to update">
+        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="Last Name">
+        <input type="text" placeholder="Specialization">
+        <input type="text" id="phoneDoctorUpdate" placeholder="Phone (XXX-XXX-XXXX)">
+        <input type="email" placeholder="Email">
+        <input type="number" placeholder="Office ID">
+        <button>Update</button>
+      </div>
+
+      <div id="doctor-delete" class="crud-form">
+        <h3>Delete Doctor</h3>
+        <input type="number" placeholder="Doctor ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <!-- Offices Section -->
+    <div class="table-section">
+      <h2>Offices</h2>
+      <button class="crud-btn" data-target="office-read">View Existing Entry</button>
+      <button class="crud-btn" data-target="office-delete">Delete Entry</button>
+
+      <div id="office-read" class="crud-form">
+        <h3>View Offices</h3>
+        <input type="number" placeholder="Office ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="office-delete" class="crud-form">
+        <h3>Delete Office</h3>
+        <input type="number" placeholder="Office ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <!-- Patients Section -->
+    <div class="table-section">
+      <h2>Patients</h2>
+      <button class="crud-btn" data-target="patient-create">Add New Entry</button>
+      <button class="crud-btn" data-target="patient-read">View Existing Entry</button>
+      <button class="crud-btn" data-target="patient-update">Update Existing Entry</button>
+
+      <div id="patient-create" class="crud-form">
+        <h3>Add Patient</h3>
+        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="Last Name">
+        <input type="date" placeholder="Date of Birth">
+        <input type="text" placeholder="Gender">
+        <input type="text" id="phonePatientAdd" placeholder="Phone (XXX-XXX-XXXX)">
+        <input type="email" placeholder="Email">
+        <input type="text" placeholder="Address">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="State">
+        <input type="text" placeholder="ZipCode">
+        <input type="number" placeholder="Office ID">
+        <button>Submit</button>
+      </div>
+
+      <div id="patient-read" class="crud-form">
+        <h3>View Patients</h3>
+        <input type="number" placeholder="Patient ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="patient-update" class="crud-form">
+        <h3>Update Patient</h3>
+        <input type="number" placeholder="Patient ID to update">
+        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="Last Name">
+        <input type="date" placeholder="Date of Birth">
+        <input type="text" placeholder="Gender">
+        <input type="text" id="phonePatientUpdate" placeholder="Phone (XXX-XXX-XXXX)">
+        <input type="email" placeholder="Email">
+        <input type="text" placeholder="Address">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="State">
+        <input type="text" placeholder="ZipCode">
+        <input type="number" placeholder="Office ID">
+        <button>Update</button>
+      </div>
+    </div>
+
+    <!-- Communications Section -->
+    <div class="table-section">
+      <h2>Communications</h2>
+      <button class="crud-btn" data-target="communication-read">View Communications</button>
+
+      <div id="communication-read" class="crud-form">
+        <h3>View Communications</h3>
+        <input type="number" placeholder="Patient ID">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+    </div>
+
+    <!-- Kits Section -->
+    <div class="table-section">
+      <h2>Kits</h2>
+      <button class="crud-btn" data-target="kit-create">Add New Kit</button>
+      <button class="crud-btn" data-target="kit-read">View Kit</button>
+      <button class="crud-btn" data-target="kit-update">Update Kit</button>
+      <button class="crud-btn" data-target="kit-delete">Delete Kit</button>
+
+      <div id="kit-create" class="crud-form">
+        <h3>Add Kit</h3>
+        <input type="number" placeholder="Kit ID">
+        <input type="number" placeholder="Product ID">
+        <button>Submit</button>
+      </div>
+
+      <div id="kit-read" class="crud-form">
+        <h3>View Kit</h3>
+        <input type="number" placeholder="Kit ID">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="kit-update" class="crud-form">
+        <h3>Update Kit</h3>
+        <input type="number" placeholder="Kit ID">
+        <input type="number" placeholder="Product ID">
+        <button>Update</button>
+      </div>
+
+      <div id="kit-delete" class="crud-form">
+        <h3>Delete Kit</h3>
+        <input type="number" placeholder="Kit ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="table-section">
+      <h2>Orders</h2>
+      <button class="crud-btn" data-target="order-create">Add New Entry</button>
+      <button class="crud-btn" data-target="order-read">View Existing Entry</button>
+      <button class="crud-btn" data-target="order-update">Update Existing Entry</button>
+      <button class="crud-btn" data-target="order-delete">Delete Entry</button>
+
+      <div id="order-create" class="crud-form">
+        <h3>Add Order</h3>
+        <input type="number" placeholder="Patient ID">
+        <input type="number" placeholder="Doctor ID">
+        <input type="datetime-local" placeholder="Order Date">
+        <input type="text" placeholder="Status">
+        <input type="number" step="0.01" placeholder="Total Amount">
+        <button>Submit</button>
+      </div>
+
+      <div id="order-read" class="crud-form">
+        <h3>View Orders</h3>
+        <input type="number" placeholder="Order ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="order-update" class="crud-form">
+        <h3>Update Order</h3>
+        <input type="number" placeholder="Order ID to update">
+        <input type="number" placeholder="Patient ID">
+        <input type="number" placeholder="Doctor ID">
+        <input type="datetime-local" placeholder="Order Date">
+        <input type="text" placeholder="Status">
+        <input type="number" step="0.01" placeholder="Total Amount">
+        <button>Update</button>
+      </div>
+
+      <div id="order-delete" class="crud-form">
+        <h3>Delete Order</h3>
+        <input type="number" placeholder="Order ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <!-- Order Details Section -->
+    <div class="table-section">
+      <h2>Order Details</h2>
+      <button class="crud-btn" data-target="order-detail-create">Add New Entry</button>
+      <button class="crud-btn" data-target="order-detail-read">View Existing Entry</button>
+
+      <div id="order-detail-create" class="crud-form">
+        <h3>Add Order Detail</h3>
+        <input type="number" placeholder="Order ID">
+        <input type="number" placeholder="Product ID">
+        <input type="number" placeholder="Quantity">
+        <input type="number" step="0.01" placeholder="Line Total">
+        <button>Submit</button>
+      </div>
+
+      <div id="order-detail-read" class="crud-form">
+        <h3>View Order Details</h3>
+        <input type="number" placeholder="Order Detail ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="table-section">
+      <h2>Products</h2>
+      <button class="crud-btn" data-target="product-create">Add New Entry</button>
+      <button class="crud-btn" data-target="product-read">View Existing Entry</button>
+      <button class="crud-btn" data-target="product-update">Update Existing Entry</button>
+      <button class="crud-btn" data-target="product-delete">Delete Entry</button>
+
+      <div id="product-create" class="crud-form">
+        <h3>Add Product</h3>
+        <input type="text" placeholder="Product Name">
+        <input type="text" placeholder="Category">
+        <input type="text" placeholder="Description">
+        <input type="number" step="0.01" placeholder="Unit Price">
+        <input type="number" placeholder="Stock Quantity">
+        <button>Submit</button>
+      </div>
+
+      <div id="product-read" class="crud-form">
+        <h3>View Products</h3>
+        <input type="number" placeholder="Product ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="product-update" class="crud-form">
+        <h3>Update Product</h3>
+        <input type="number" placeholder="Product ID to update">
+        <input type="text" placeholder="Product Name">
+        <input type="text" placeholder="Category">
+        <input type="text" placeholder="Description">
+        <input type="number" step="0.01" placeholder="Unit Price">
+        <input type="number" placeholder="Stock Quantity">
+        <button>Update</button>
+      </div>
+
+      <div id="product-delete" class="crud-form">
+        <h3>Delete Product</h3>
+        <input type="number" placeholder="Product ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <!-- Admin Section -->
+    <div class="table-section">
+      <h2>Admin</h2>
+      <button class="crud-btn" data-target="admin-read">View Admin</button>
+      <button class="crud-btn" data-target="admin-delete">Delete Admin</button>
+
+      <div id="admin-read" class="crud-form">
+        <h3>View Admin</h3>
+        <input type="number" placeholder="Admin ID (optional)">
+        <button>View</button>
+        <div class="output"></div>
+      </div>
+
+      <div id="admin-delete" class="crud-form">
+        <h3>Delete Admin</h3>
+        <input type="number" placeholder="Admin ID">
+        <button>Delete</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
